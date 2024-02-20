@@ -9,27 +9,27 @@ async function connectToMongo() {
   const client = new MongoClient(mongoUrl, { useUnifiedTopology: true });
   try {
     await client.connect();
-    return client.db('it302');
+    return client.db('IT302');
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);
     throw error;
   }
 }
 // Route to get films from MongoDB and return them as JSON
-app.get('/films_yf239', async (req, res) => {
+app.get('/films_Yf239', async (req, res) => {
   try {
     const db = await connectToMongo();
     // Remove the filter query
     const query = {};
     // Use the query object to find all films
-    const films_YOURUCID = await db.collection('films_yf239').find(query).toArray();
-    res.json(films_YOURUCID);
+    const films_Yf239 = await db.collection('films_Yf239').find(query).toArray();
+    res.json(films_Yf239);
   } catch (error) {
     res.status(500).json({ error: 'Error fetching films from the database' });
   }
 });
 // Route to get films from MongDB and handle filtering based on the "title" field
-app.get('/films_title_yf239', async (req, res) => {
+app.get('/films_title_Yf239', async (req, res) => {
   try {
     const db = await connectToMongo();
    
@@ -38,11 +38,13 @@ app.get('/films_title_yf239', async (req, res) => {
     // Define a query object based on the filter, or an empty query if no filter is provided
     const query = propertyTypeFilter ? { title: propertyTypeFilter } : {};
     // Use the query object to find films that match the filter
-    const films_YOURUCID = await db.collection('films_yf239').find(query).toArray();
-    res.json(films_YOURUCID);
+    const films_Yf239 = await db.collection('films_Yf239').find(query).toArray();
+    res.json(films_Yf239);
   } catch (error) {
     res.status(500).json({ error: 'Error fetching filtered films from the database' });
   }
+   console.log(films_Yf239);
+
 });
 // TODO Route to get films from MongoDB and handle filtering based on the "genre" field
 // Start the server
